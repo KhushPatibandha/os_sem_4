@@ -12,14 +12,9 @@ public class RR {
         Process p5 = new Process("p5", 2, 2);
         Process p6 = new Process("p6", 6, 3);
 
-
         int q = 3;
         Process[] processes = {p1, p2, p3, p4, p5, p6};
         Arrays.sort(processes, Comparator.comparingInt(o -> o.arrivalTime));
-
-        // for(int i = 0; i < processes.length; i++) {
-        //     System.out.println(processes[i].processId + " " + processes[i].arrivalTime + " " + processes[i].burstTime);
-        // }
 
         ArrayList<Process> queue = new ArrayList<>();
         queue.add(processes[0]);
@@ -50,9 +45,18 @@ public class RR {
             }
         }
 
+        System.out.println("--------------------------------------------------------------------");
+        System.out.printf("%-10s %-10s %-10s %-10s %-10s %-10s%n", "ProcessID", "Arrival", "Burst", "Finish", "Waiting", "TurnAround");
         for(int i = 0; i < processes.length; i++) {
-            System.out.println(processes[i].processId + " " + processes[i].arrivalTime + " " + processes[i].bt + " " + processes[i].finishTime + " " + processes[i].waitingTime + " " + processes[i].turnAroundTime);
+            System.out.printf("%-10s %-10d %-10d %-10d %-10d %-10d%n", 
+            processes[i].processId, 
+            processes[i].arrivalTime, 
+            processes[i].bt, 
+            processes[i].finishTime, 
+            processes[i].waitingTime, 
+            processes[i].turnAroundTime);
         }
+        System.out.println("--------------------------------------------------------------------");
     }
 }
 

@@ -9,14 +9,15 @@ public class LRU {
         int[] arr = {7, 0, 1, 2, 0, 3, 0, 4, 2, 3, 0, 3, 2, 1, 2, 0, 1, 7, 0, 1};
         int frames = 4;
         
+        // Test case - 2
         // int[] arr = {7, 0, 1, 2, 0, 3, 0, 4, 2, 3, 0, 3, 2, 1, 2, 0, 1, 7, 0, 1};
         // int frames = 3;
         
-        // Test case - 2
+        // Test case - 3
         // int[] arr = {3, 1, 2, 3, 4, 2, 3, 0, 3, 1, 3};
         // int frames = 3;
-
-        // Test case - 3
+        
+        // Test case - 4
         // int[] arr = {3, 2, 1, 3, 4, 1, 6, 2, 4, 3, 4, 2, 1, 4, 5, 2, 1, 3, 4};
         // int frames = 3;
 
@@ -32,21 +33,21 @@ public class LRU {
                 hitOrMissList.add("Miss");
                 missCount++;
                 helper.put(arr[i], arr[i]);
+                System.out.println(helper.printList() + " Miss");
             } else {
                 hitOrMissList.add("Hit");
                 hitCount++;
+                System.out.println(helper.printList() + " Hit");
             }
         }
                 
-
-        helper.printList();
         System.out.println(hitOrMissList);
 
         double hitRatio = ((double)hitCount / arr.length) * 100;
         double missRatio = ((double)missCount / arr.length) * 100;
 
-        System.out.println(hitRatio);
-        System.out.println(missRatio);
+        System.out.println("Hit %: " + hitRatio + "%");
+        System.out.println("Miss %: " + missRatio + "%");
     }
 }
 
@@ -99,8 +100,7 @@ class Helper {
         Node node = head;
         ArrayList<String> list = new ArrayList<>();
         while(node != null) {
-            list.add(node.getKey() + " : " + node.getValue());
-            System.out.println(node.getKey() + " : " + node.getValue());
+            list.add(node.getKey() + "");
             node = node.getNext();
         }
         return list;

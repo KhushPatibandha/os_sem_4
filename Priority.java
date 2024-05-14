@@ -14,20 +14,9 @@ public class Priority {
 
         Arrays.sort(arrivalTimeBurstTimeAndPriority, Comparator.comparingInt(o -> o[2]));
 
-        for (int i = 0; i < arrivalTimeBurstTimeAndPriority.length; i++) {
-            System.out.println(arrivalTimeBurstTimeAndPriority[i][0] + " " + arrivalTimeBurstTimeAndPriority[i][1] + " "
-                    + arrivalTimeBurstTimeAndPriority[i][2]);
-        }
-
         ArrayList<int[]> queue = new ArrayList<>();
         for (int i = 0; i < arrivalTimeBurstTimeAndPriority.length; i++) {
-            System.out.println(arrivalTimeBurstTimeAndPriority[i][0] + " " + arrivalTimeBurstTimeAndPriority[i][1]);
             queue.add(arrivalTimeBurstTimeAndPriority[i]);
-        }
-
-        System.out.println("-----------------------------------");
-        for (int i = 0; i < queue.size(); i++) {
-            System.out.println(queue.get(i)[0] + " " + queue.get(i)[1]);
         }
 
         int time = 0;
@@ -50,24 +39,6 @@ public class Priority {
             }
         }
 
-        System.out.println("-----------------------------------");
-        System.out.println("Finish Time");
-        for (int i = 0; i < finishTime.size(); i++) {
-            System.out.println(finishTime.get(i));
-        }
-
-        System.out.println("-----------------------------------");
-        System.out.println("Waiting Time");
-        for (int i = 0; i < waitingTime.size(); i++) {
-            System.out.println(waitingTime.get(i));
-        }
-
-        System.out.println("-----------------------------------");
-        System.out.println("Turn Around Time");
-        for (int i = 0; i < turnAroundTime.size(); i++) {
-            System.out.println(turnAroundTime.get(i));
-        }
-
         float averageWaitingTime = 0;
         for (int i = 0; i < waitingTime.size(); i++) {
             averageWaitingTime += waitingTime.get(i);
@@ -79,6 +50,19 @@ public class Priority {
             averageTurnAroundTime += turnAroundTime.get(i);
         }
         averageTurnAroundTime /= turnAroundTime.size();
+
+        System.out.println("------------------------------------------------------------------------------------");
+        System.out.println("Arrival Time | Burst Time | Priority | Finish Time | Waiting Time | Turn Around Time");
+        for (int i = 0; i < arrivalTimeBurstTimeAndPriority.length; i++) {
+            System.out.format("%13d | %10d | %8d | %11d | %12d | %15d%n", 
+            arrivalTimeBurstTimeAndPriority[i][0], 
+            arrivalTimeBurstTimeAndPriority[i][1], 
+            arrivalTimeBurstTimeAndPriority[i][2], 
+            finishTime.get(i), 
+            waitingTime.get(i), 
+            turnAroundTime.get(i));
+        }
+        System.out.println("------------------------------------------------------------------------------------");
 
         System.out.println("Average Waiting Time: " + averageWaitingTime);
         System.out.println("Average Turn Around Time: " + averageTurnAroundTime);
